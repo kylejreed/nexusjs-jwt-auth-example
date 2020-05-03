@@ -11,7 +11,7 @@
   "scripts": {
     "format": "npx prettier --write './**/*.{ts,md}'",
     "dev": "nexus dev",
-    "build": "nexus build",
+    "build": "nexus build --deployment now",
     "start": "node node_modules/.build"
   },
   "prettier": {
