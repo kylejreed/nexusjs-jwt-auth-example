@@ -1,8 +1,5 @@
 import { schema } from "nexus"
 import { getToken } from "../plugins/jwt"
-import { FileUpload } from "graphql-upload"
-import * as fs from 'fs'
-import * as path from 'path'
 import { saveFile } from '../utils/files';
 
 schema.mutationType({
@@ -71,8 +68,7 @@ schema.mutationType({
       },
       resolve: async (root, { file }, ctx) => {
         try {
-          const fullFile = await file
-          await saveFile(fullFile)
+          await saveFile(await file)
           return true
         } catch {
           return false
