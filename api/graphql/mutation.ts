@@ -1,6 +1,9 @@
 import { schema } from "nexus"
 import { getToken } from "../plugins/jwt"
-
+import { FileUpload } from "graphql-upload"
+import * as fs from 'fs'
+import * as path from 'path'
+import { saveFile } from '../utils/files';
 
 schema.mutationType({
   definition(t) {
@@ -56,6 +59,24 @@ schema.mutationType({
         }
         await ctx.db.likedContent.create({ data: { entity: 'Post', entityId: args.postId, user: { connect: { id: ctx.token.userId } } } })
         return true
+      },
+    })
+
+    t.boolean('singleUpload', {
+      args: {
+        file: schema.arg({
+          type: 'Upload',
+          required: true
+        })
+      },
+      resolve: async (root, { file }, ctx) => {
+        try {
+          const fullFile = await file
+          await saveFile(fullFile)
+          return true
+        } catch {
+          return false
+        }
       },
     })
   }
