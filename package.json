@@ -1,6 +1,6 @@
 {
   "name": "better-boar",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "graphql-upload": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -12,7 +12,9 @@
     "format": "npx prettier --write './**/*.{ts,md}'",
     "dev": "nexus dev",
     "build": "nexus build --deployment now",
-    "start": "node node_modules/.build"
+    "start": "node node_modules/.build",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "prettier": {
     "semi": false,
@@ -20,8 +22,15 @@
     "trailingComma": "all"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.9.0",
     "@types/graphql-upload": "^8.0.3",
+    "@types/jest": "^25.2.1",
     "@types/jsonwebtoken": "^8.3.9",
-    "prettier": "^2.0.5"
+    "jest": "^25.0.0",
+    "jest-environment-node": "^26.0.1",
+    "nanoid": "^3.1.5",
+    "pg": "^8.0.3",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.5.0"
   }
 }
